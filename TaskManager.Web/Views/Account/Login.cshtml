@@ -1,0 +1,31 @@
+﻿﻿@{
+    ViewData["Title"] = "Login";
+
+}
+<h2>ログイン</h2>
+<hr />
+<div class="row">
+    <div class="col-md-6">
+        <form asp-controller="Account" asp-action="Login" method="post">
+            <div asp-validation-summary="All" class="text-danger"></div>
+            <div class="form-group">
+                <label for="email">E-mail</label>
+                <input type="text" name="email" placeholder="E-mail" id="email" class="form-control" />
+            </div>
+            <div class="form-group">
+                <label for="password">パスワード</label>
+                <input type="password" name="password" placeholder="パスワード" id="password" class="form-control" />
+            </div>
+            <div class="form-group">
+                <input type="submit" value="ログイン" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}
