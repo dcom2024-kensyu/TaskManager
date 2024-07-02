@@ -8,6 +8,7 @@ namespace TaskManager.Web
     {
         public static void Main(string[] args)
         {
+            //Îç‚Ìƒuƒ‰ƒ“ƒ`‚Å‚·B
             var builder = WebApplication.CreateBuilder(args);
 
             // Add services to the container.
