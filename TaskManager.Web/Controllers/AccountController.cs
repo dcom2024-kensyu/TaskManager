@@ -60,6 +60,8 @@ namespace TaskManager.Web.Controllers
             return RedirectToAction(nameof(Login));
         }
 
+        public IActionResult Forbidden() => View();
+
         private IEnumerable<Claim> CreateClaims(User user)
         {
             yield return new Claim(ClaimTypes.Email, user.Email!);

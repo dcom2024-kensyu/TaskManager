@@ -1,5 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
+using System.Security.Claims;
 using TaskManager.Web.Models;
 
 namespace TaskManager.Web.Controllers
@@ -15,6 +16,11 @@ namespace TaskManager.Web.Controllers
 
         public IActionResult Index()
         {
+            var email = User.FindFirst(ClaimTypes.Email).Value;
+            var role = User.FindFirst(ClaimTypes.Role).Value;
+            ViewData["Email"] = email;
+            ViewData["Role"] = role;
+
             return View();
         }
 

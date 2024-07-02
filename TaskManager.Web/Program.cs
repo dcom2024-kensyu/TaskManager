@@ -19,6 +19,7 @@ namespace TaskManager.Web
                 .AddCookie(option =>
                 {
                     option.LoginPath = "/Account/Login";
+                    option.AccessDeniedPath = "/Account/Forbidden";
                 });
 
             // すべてのユーザーの認証を要求するフォールバック認可ポリシーを設定
