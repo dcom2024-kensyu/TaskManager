@@ -53,6 +53,13 @@ namespace TaskManager.Web.Controllers
             return RedirectToAction(nameof(HomeController.Index), "Home");
         }
 
+        public async Task<IActionResult> Logout()
+        {
+            await HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
+
+            return RedirectToAction(nameof(Login));
+        }
+
         private IEnumerable<Claim> CreateClaims(User user)
         {
             yield return new Claim(ClaimTypes.Email, user.Email!);
