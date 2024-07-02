@@ -1,3 +1,5 @@
+using TaskManager.Web.Models;
+
 namespace TaskManager.Web
 {
     public class Program
@@ -8,6 +10,7 @@ namespace TaskManager.Web
 
             // Add services to the container.
             builder.Services.AddControllersWithViews();
+            builder.Services.AddDbContext<ToDoDbContext>();
 
             var app = builder.Build();
 
