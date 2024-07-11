@@ -1,10 +1,12 @@
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
 using System.Security.Claims;
+using TaskManager.Web.Filter;
 using TaskManager.Web.Models;
 
 namespace TaskManager.Web.Controllers
 {
+    [TypeFilter(typeof(AccessLogFilter))]
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;

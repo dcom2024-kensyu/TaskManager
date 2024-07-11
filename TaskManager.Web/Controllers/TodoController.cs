@@ -5,10 +5,12 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
+using TaskManager.Web.Filter;
 using TaskManager.Web.Models;
 
 namespace TaskManager.Web.Controllers
 {
+    [TypeFilter(typeof(AccessLogFilter))]
     public class TodoController : Controller
     {
         private readonly ToDoDbContext _context;
