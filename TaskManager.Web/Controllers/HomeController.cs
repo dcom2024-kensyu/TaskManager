@@ -7,6 +7,7 @@ using TaskManager.Web.Models;
 namespace TaskManager.Web.Controllers
 {
     [TypeFilter(typeof(AccessLogFilter))]
+    [TypeFilter(typeof(ExceptionFilter))]
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;

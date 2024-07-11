@@ -11,18 +11,22 @@ using TaskManager.Web.Models;
 namespace TaskManager.Web.Controllers
 {
     [TypeFilter(typeof(AccessLogFilter))]
+    [TypeFilter(typeof(ExceptionFilter))]
     public class TodoController : Controller
     {
         private readonly ToDoDbContext _context;
+        private readonly ILogger<TodoController> _logger;
 
-        public TodoController(ToDoDbContext context)
+        public TodoController(ToDoDbContext context, ILogger<TodoController> logger)
         {
             _context = context;
+            _logger = logger;
         }
 
         // GET: Todo
         public async Task<IActionResult> Index()
         {
+            throw new Exception();
             return View(await _context.Todos.ToListAsync());
         }
 
