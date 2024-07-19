@@ -6,6 +6,8 @@ using Microsoft.EntityFrameworkCore;
 using System.Security.Claims;
 using TaskManager.Web.Models;
 using TaskManager.Web.Filter;
+using TaskManager.Web.Library;
+using System.Text;
 
 namespace TaskManager.Web.Controllers
 {
@@ -39,10 +41,12 @@ namespace TaskManager.Web.Controllers
 
             var user = _context.Users
                 .Include(e => e.Roles)
-                .Where(e => e.Email == email && e.Password == password)
-                .FirstOrDefault();
+                .Where(e => e.Email == email)
+                .SingleOrDefault();
 
-            if (user is null)
+            var passwordHasher = new PasswordHasher();
+
+            if (user is null || !passwordHasher.VerifyHashedPassword(password, user.Password, Convert.FromBase64String(user.Salt)))
             {
                 ModelState.AddModelError(string.Empty, "ログイン情報に誤りがあります。");
                 return View();

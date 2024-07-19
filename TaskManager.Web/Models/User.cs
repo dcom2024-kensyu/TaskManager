@@ -21,6 +21,8 @@ public partial class User
 
     public long? UpdatedBy { get; set; }
 
+    public string? Salt { get; set; }
+
     public virtual ICollection<Comment> Comments { get; set; } = new List<Comment>();
 
     public virtual ICollection<UserRole> Roles { get; set; } = new List<UserRole>();

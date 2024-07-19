@@ -143,6 +143,10 @@ public partial class ToDoDbContext : DbContext
             entity.Property(e => e.Password)
                 .HasMaxLength(255)
                 .HasColumnName("password");
+            entity.Property(e => e.Salt)
+                .HasMaxLength(64)
+                .IsUnicode(false)
+                .HasColumnName("salt");
             entity.Property(e => e.UpdatedAt).HasColumnName("updated_at");
             entity.Property(e => e.UpdatedBy).HasColumnName("updated_by");
             entity.Property(e => e.UserName)
