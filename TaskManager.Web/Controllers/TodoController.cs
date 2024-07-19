@@ -26,7 +26,6 @@ namespace TaskManager.Web.Controllers
         // GET: Todo
         public async Task<IActionResult> Index()
         {
-            throw new Exception();
             return View(await _context.Todos.ToListAsync());
         }
 
