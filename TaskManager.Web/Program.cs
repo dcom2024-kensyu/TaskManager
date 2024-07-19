@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Authorization;
 using NLog;
 using NLog.Web;
 using TaskManager.Web.Models;
+using TaskManager.Web.Services;
 
 namespace TaskManager.Web
 {
@@ -21,6 +22,7 @@ namespace TaskManager.Web
                 // Add services to the container.
                 builder.Services.AddControllersWithViews();
                 builder.Services.AddDbContext<ToDoDbContext>();
+                builder.Services.AddTransient<StatisticsService>();
 
                 // NLogをDI（依存性の注入）で使用できるように設定
                 builder.Logging.ClearProviders();
