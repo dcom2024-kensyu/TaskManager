@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc.Controllers;
 using Microsoft.AspNetCore.Mvc.Filters;
+using NLog;
 using NLog.Web;
 using System.Security.Claims;
 using System.Text.Json;
@@ -20,7 +21,7 @@ namespace TaskManager.Web.Filter
 
         private void OutputAccessLog(FilterContext context, string starOrtEnd)
         {
-            var logger = NLogBuilder.ConfigureNLog("nlog.config").GetCurrentClassLogger();
+            var logger = LogManager.GetCurrentClassLogger();
             try
             {
                 var controllerActionDescriptor = context.ActionDescriptor as ControllerActionDescriptor;

@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc.Controllers;
 using Microsoft.AspNetCore.Mvc.Filters;
+using NLog;
 using NLog.Web;
 using System.Security.Claims;
 
@@ -9,7 +10,7 @@ namespace TaskManager.Web.Filter
     {
         public void OnException(ExceptionContext context)
         {
-            var logger = NLogBuilder.ConfigureNLog("nlog.config").GetCurrentClassLogger();
+            var logger = LogManager.GetCurrentClassLogger();
             try
             {
                 var controllerActionDescriptor = context.ActionDescriptor as ControllerActionDescriptor;
