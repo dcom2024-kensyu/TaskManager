@@ -9,6 +9,10 @@
 <p>
     <a asp-action="Create">Create New</a>
 </p>
+<div style="text-align:right">
+    <a asp-action="ExportCsv" class="btn btn-primary">CSV出力</a>
+    <a asp-action="ExportCsvByCsvHelper" class="btn btn-primary">CSV出力(CsvHelper)</a>
+</div>
 <table class="table">
     <thead>
         <tr>

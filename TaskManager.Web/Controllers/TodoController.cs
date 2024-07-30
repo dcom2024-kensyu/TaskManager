@@ -157,5 +157,44 @@ namespace TaskManager.Web.Controllers
         {
             return _context.Todos.Any(e => e.Id == id);
         }
+
+        public async Task<IActionResult> ExportCsv()
+        {
+            var list = await _context.Todos.ToListAsync();
+
+            var sb = new StringBuilder();
+            sb.AppendLine($"\"Title\",\"Description\",\"completeStatus\",\"Priority\",\"CreatedAt\",\"DueDate\"");
+
+            foreach (var item in list)
+            {
+                var completeStatus = item.IsCompleted ? "完了" : "未完了";
+                sb.AppendLine($"\"{item.Title}\",\"{item.Description}\",\"{completeStatus}\",\"{item.Priority}\",\"{item.CreatedAt}\",\"{item.DueDate}\"");
+            }
+
+            string fileName = $"Task_{DateTime.Now:yyyyMMddHHmmss}.csv";
+
+            return File(Encoding.UTF8.GetBytes(sb.ToString()), "text/csv", fileName);
+        }
+
+        public async Task<IActionResult> ExportCsvByCsvHelper()
+        {
+            var list = await _context.Todos.ToListAsync();
+
+            using var memory = new MemoryStream();
+            using var writer = new StreamWriter(memory);
+            var config = new CsvConfiguration(CultureInfo.InvariantCulture)
+            {
+                HasHeaderRecord = true,
+                ShouldQuote = (context) => true,
+            };
+            using var csv = new CsvWriter(writer, config);
+
+            csv.WriteRecords(list);
+            writer.Flush();
+
+            string fileName = $"Task_{DateTime.Now:yyyyMMddHHmmss}.csv";
+
+            return File(memory.ToArray(), "text/csv", fileName);
+        }
     }
 }
